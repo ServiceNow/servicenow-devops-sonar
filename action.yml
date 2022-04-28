@@ -1,0 +1,36 @@
+name: 'ServiceNow DevOps Sonar'
+description: 'Send Sonar Information to ServiceNow Devops'
+inputs:
+  instance-name: 
+    description: 'ServiceNow Instance Name'
+    required: true
+  devops-integration-user-name:
+    description: 'Devops Integration User Name'
+    required: true
+  devops-integration-user-password:
+    description: 'Devops Integration User Password'
+    required: true
+  tool-id:
+    description: 'Orchestration Tool Id'
+    required: true
+  context-github:
+    description: 'Github Context'
+    required: true
+  job-name:
+    description: 'Display Name of the Job'
+    required: true
+  sonar-host-url:
+    description: 'Sonar Host Url'
+    required: true
+  sonar-project-key:
+    description: 'Sonar Project Key'
+    required: true
+  sonar-org-key:
+    description: 'Sonar Organization Key'
+    required: false
+branding:
+  icon: 'refresh-ccw'
+  color: 'green'
+runs: 
+  using: 'node12'
+  main: 'dist/index.js'

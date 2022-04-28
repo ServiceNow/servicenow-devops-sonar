@@ -1,0 +1,30 @@
+{
+  "name": "servicenow-devops-sonar",
+  "version": "1.0.0",
+  "description": "Sonar custom action",
+  "main": "dist/index.js",
+  "private": false,
+  "scripts": {
+    "build": "ncc build src/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:ServiceNow/servicenow-devops-sonar.git"
+  },
+  "keywords": [
+    "devops",
+    "servicenow",
+    "sonar"
+  ],
+  "author": "ServiceNow",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ServiceNow/servicenow-devops-sonar/issues"
+  },
+  "homepage": "https://github.com/ServiceNow/servicenow-devops-sonar#readme",
+  "dependencies": {
+    "@actions/core": "^1.7.0",
+    "axios": "^0.24.0",
+    "follow-redirects": "^1.14.9"
+  }
+}

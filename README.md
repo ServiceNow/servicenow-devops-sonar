@@ -1,6 +1,6 @@
 # ServiceNow DevOps Register Sonar Details GitHub Action
 
-This custom action needs to be added at step level in a job to send sonar details in ServiceNow instance.
+This custom action needs to be added at step level in a job to register sonar details in ServiceNow instance.
 
 # Usage
 ## Step 1: Prepare values for setting up your secrets for Actions
@@ -17,7 +17,7 @@ On GitHub, go in your organization settings or repository settings, click on the
 Create secrets called 
 - `SN_DEVOPS_USER`
 - `SN_DEVOPS_PASSWORD`
-- `SN_INSTANCE_NAME` only the **domain** string is required from your ServiceNow instance URL, for example https://**domain**.service-now.com
+- `SN_INSTANCE_URL` your ServiceNow instance URL, for example **https://test.service-now.com**
 - `SN_ORCHESTRATION_TOOL_ID` only the **sys_id** is required for the GitHub tool created in your ServiceNow instance
 - `SONAR_URL` the URL of your Sonar instance, for example **https://sonarcloud.io**
 - `SONAR_PROJECT_KEY` the project key in your Sonar instance, for example **org.examples:demo**
@@ -29,12 +29,12 @@ build:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Send Sonar Details Step
+      - name: ServiceNow DevOps Sonar Scan Results
         uses: ServiceNow/servicenow-devops-sonar@v1
         with:
           devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
           devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
-          instance-name: ${{ secrets.SN_INSTANCE_NAME }}
+          instance-url: ${{ secrets.SN_INSTANCE_URL }}
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           context-github: ${{ toJSON(github) }}
           job-name: 'Build'
@@ -42,7 +42,7 @@ build:
           sonar-project-key: ${{ secrets.SONAR_PROJECT_KEY }}
           sonar-org-key: ${{ secrets.SONAR_ORG_KEY }}
 ```
-The values for secrets should be setup in Step 1. Secrets should be created in Step 2.
+The values for secrets should be setup in Step 1. Secrets should be created in Step 2. The Step Name should be **ServiceNow DevOps Sonar Scan Results**.
 
 ## Inputs
 
@@ -54,9 +54,9 @@ The values for secrets should be setup in Step 1. Secrets should be created in S
 
 **Required**  DevOps Integration User Password to ServiceNow instance. 
 
-### `instance-name`
+### `instance-url`
 
-**Required**  Name of ServiceNow instance to send the sonar details notification. 
+**Required**  URL of ServiceNow instance to register the sonar details, for example _https://test.service-now.com_.
 
 ### `tool-id`
 
@@ -68,11 +68,11 @@ The values for secrets should be setup in Step 1. Secrets should be created in S
 
 ### `job-name`
 
-**Required**  Display name of the job given for attribute _name_ in which _steps_ have been added for custom sonar action.
+**Required**  Display name of the job given for attribute _name_ in which _steps_ have been added for ServiceNow sonar custom action.
 
 ### `sonar-host-url`
 
-**Required**  URL of SonarQube server instance or Sonar Cloud, for example https://sonarcloud.io
+**Required**  URL of SonarQube server instance or Sonar Cloud, for example _https://sonarcloud.io_.
 
 ### `sonar-project-key`
 
@@ -89,8 +89,8 @@ No outputs produced.
 
 ## Support Model
 
-ServiceNow built this custom action with the intent to help customers get started faster in integrating ServiceNow DevOps Change with GitHub Actions, but __will not be providing formal support__. This integration is therefore considered "use at your own risk", and will rely on the open-source community to help drive fixes and feature enhancements via Issues. Occasionally, ServiceNow may choose to contribute to the open-source project to help address the highest priority Issues, and will do our best to keep the integrations updated with the latest API changes shipped with family releases. This is a good opportunity for our customers and community developers to step up and help drive iteration and improvement on these open-source integrations for everyone's benefit. 
+ServiceNow customers may request support through the [Now Support (HI) portal](https://support.servicenow.com/nav_to.do?uri=%2Fnow_support_home.do).
 
 ## Governance Model
 
-Initially, ServiceNow product management and engineering representatives will own governance of these integrations to ensure consistency with roadmap direction. In the longer term, we hope that contributors from customers and our community developers will help to guide prioritization and maintenance of these integrations. At that point, this governance model can be updated to reflect a broader pool of contributors and maintainers.
+Initially, ServiceNow product management and engineering representatives will own governance of these integrations to ensure consistency with roadmap direction. In the longer term, we hope that contributors from customers and our community developers will help to guide prioritization and maintenance of these integrations. At that point, this governance model can be updated to reflect a broader pool of contributors and maintainers. 

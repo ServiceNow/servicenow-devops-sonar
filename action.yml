@@ -1,8 +1,8 @@
 name: 'ServiceNow DevOps Sonar'
-description: 'Send Sonar Information to ServiceNow Devops'
+description: 'Send Sonar Information to ServiceNow Instance'
 inputs:
-  instance-name: 
-    description: 'ServiceNow Instance Name'
+  instance-url: 
+    description: 'ServiceNow Instance URL'
     required: true
   devops-integration-user-name:
     description: 'Devops Integration User Name'
@@ -20,7 +20,7 @@ inputs:
     description: 'Display Name of the Job'
     required: true
   sonar-host-url:
-    description: 'Sonar Host Url'
+    description: 'Sonar Host URL'
     required: true
   sonar-project-key:
     description: 'Sonar Project Key'

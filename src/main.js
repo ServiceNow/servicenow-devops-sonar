@@ -3,7 +3,7 @@ const axios = require('axios');
 
 
 (async function main() {
-    const instanceName = core.getInput('instance-name', { required: true });
+    const instanceUrl = core.getInput('instance-url', { required: true });
     const toolId = core.getInput('tool-id', { required: true });
     const username = core.getInput('devops-integration-user-name', { required: true });
     const password = core.getInput('devops-integration-user-password', { required: true });
@@ -20,7 +20,7 @@ const axios = require('axios');
         core.setFailed(`Exception parsing github context ${e}`);
     }
 
-    const endpoint = `https://${instanceName}.service-now.com/api/sn_devops/devops/tool/softwarequality?toolId=${toolId}`;
+    const endpoint = `${instanceUrl}/api/sn_devops/devops/tool/softwarequality?toolId=${toolId}`;
 
     let payload;
     
@@ -62,7 +62,7 @@ const axios = require('axios');
         let httpHeaders = { headers: defaultHeaders };
         result = await axios.post(endpoint, JSON.stringify(payload), httpHeaders);
     } catch (e) {
-        core.setFailed(`Exception POSTing sonar details payload to ServiceNow: ${e}\n\n${JSON.stringify(payload)}\n\n${e.toJSON}`);
+        core.setFailed(`ServiceNow DevOps Event to register Sonar Scan Summaries is not created. Please check ServiceNow logs for more details.`);
     }
     
 })();

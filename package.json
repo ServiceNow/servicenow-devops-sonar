@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Sonar custom action",
   "main": "dist/index.js",
-  "private": false,
+  "private": true,
   "scripts": {
     "build": "ncc build src/main.js"
   },
@@ -23,8 +23,8 @@
   },
   "homepage": "https://github.com/ServiceNow/servicenow-devops-sonar#readme",
   "dependencies": {
-    "@actions/core": "^1.7.0",
+    "@actions/core": "^1.8.2",
     "axios": "^0.24.0",
-    "follow-redirects": "^1.14.9"
+    "follow-redirects": "^1.15.0"
   }
 }

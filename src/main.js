@@ -67,11 +67,13 @@ const axios = require('axios');
         let httpHeaders = { headers: defaultHeaders };
         result = await axios.post(endpoint, JSON.stringify(payload), httpHeaders);
     } catch (e) {
-        //core.setFailed('error message : '+e.message);
-        if (e.message.includes('ECONNREFUSED') || e.message.includes('405'))
-            core.setFailed('Your ServiceNow Instance URL is NOT valid. Please correct the URL and try again.');
-        else
-            core.setFailed(e.message);
+        if (e.message.includes('ECONNREFUSED') || e.message.includes('ENOTFOUND') || e.message.includes('405')) {
+            core.setFailed('ServiceNow Instance URL is NOT valid. Please correct the URL and try again.');
+        } else if (e.message.includes('401')) {
+            core.setFailed('Invalid Credentials. Please correct the credentials and try again.');
+        } else {
+            core.setFailed(`ServiceNow Software Quality Results are NOT created. Please check ServiceNow logs for more details.`);
+        }
     }
     
 })();

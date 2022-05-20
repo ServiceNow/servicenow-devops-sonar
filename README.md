@@ -8,7 +8,6 @@ This custom action needs to be added at step level in a job to register sonar de
 - instance URL for your ServiceNow dev, test, prod, etc. environments
 - tool_id of your GitHub tool created in ServiceNow DevOps
 - sonar URL for your SonarQube instance or Sonar Cloud, for example **https://sonarcloud.io**
-- sonar organization the key for your organization in Sonar instance, for example **devops**
 - sonar project the key for your project in Sonar instance, for example **org.examples:demo**
 
 ## Step 2: Configure Secrets in your GitHub Ogranization or GitHub repository
@@ -21,7 +20,6 @@ Create secrets called
 - `SN_ORCHESTRATION_TOOL_ID` only the **sys_id** is required for the GitHub tool created in your ServiceNow instance
 - `SONAR_URL` the URL of your Sonar instance, for example **https://sonarcloud.io**
 - `SONAR_PROJECT_KEY` the project key in your Sonar instance, for example **org.examples:demo**
-- `SONAR_ORG_KEY` the project key in your Sonar instance, for example **devops**
 
 ## Step 3: Configure the GitHub Action if need to adapt for your needs or workflows
 ```yaml
@@ -40,7 +38,6 @@ build:
           job-name: 'Build'
           sonar-host-url: ${{ secrets.SONAR_URL }}
           sonar-project-key: ${{ secrets.SONAR_PROJECT_KEY }}
-          sonar-org-key: ${{ secrets.SONAR_ORG_KEY }}
 ```
 The values for secrets should be setup in Step 1. Secrets should be created in Step 2. The Step Name should be **ServiceNow DevOps Sonar Scan Results**.
 
@@ -77,10 +74,6 @@ The values for secrets should be setup in Step 1. Secrets should be created in S
 ### `sonar-project-key`
 
 **Required**  The project key in your Sonar instance URL.
-
-### `sonar-org-key`
-
-The organization key in your Sonar instance URL. This is required only when your scan summaries available in Sonar Cloud.
 
 ## Outputs
 No outputs produced.

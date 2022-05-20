@@ -5156,14 +5156,13 @@ const axios = __nccwpck_require__(497);
 
 
 (async function main() {
-    const instanceUrl = core.getInput('instance-url', { required: true });
+    let instanceUrl = core.getInput('instance-url', { required: true });
     const toolId = core.getInput('tool-id', { required: true });
     const username = core.getInput('devops-integration-user-name', { required: true });
     const password = core.getInput('devops-integration-user-password', { required: true });
     const jobname = core.getInput('job-name', { required: true });
     const projectKey = core.getInput('sonar-project-key', { required: true });
-    const orgKey = core.getInput('sonar-org-key', { required: false });
-    const sonarUrl = core.getInput('sonar-host-url', { required: true });
+    let sonarUrl = core.getInput('sonar-host-url', { required: true });
 
     let githubContext = core.getInput('context-github', { required: true });
 
@@ -5172,12 +5171,18 @@ const axios = __nccwpck_require__(497);
     } catch (e) {
         core.setFailed(`Exception parsing github context ${e}`);
     }
-
-    const endpoint = `${instanceUrl}/api/sn_devops/devops/tool/softwarequality?toolId=${toolId}`;
-
+            
     let payload;
     
     try {
+        sonarUrl = sonarUrl.trim();
+        if (sonarUrl.endsWith('/'))
+            sonarUrl = sonarUrl.slice(0, -1);
+
+        instanceUrl = instanceUrl.trim();
+        if (instanceUrl.endsWith('/'))
+            instanceUrl = instanceUrl.slice(0, -1);
+
         payload = {
             toolId: toolId,
             runId: `${githubContext.run_id}`,
@@ -5187,20 +5192,20 @@ const axios = __nccwpck_require__(497);
             sha: `${githubContext.sha}`,
             workflow: `${githubContext.workflow}`,
             projectKey: `${projectKey}`,
-            orgKey: `${orgKey}`,
             sonarUrl: `${sonarUrl}`,
             repository: `${githubContext.repository}`,
             ref: `${githubContext.ref}`,
             refName: `${githubContext.ref_name}`,
             refType: `${githubContext.ref_type}`
         };
-        core.debug('Sonar Custom Action payload is : ${JSON.stringify(payload)}\n\n');
+        core.debug('Sonar Custon Action payload is : ${JSON.stringify(payload)}\n\n');
     } catch (e) {
         core.setFailed(`Exception setting the payload ${e}`);
         return;
     }
 
     let result;
+    const endpoint = `${instanceUrl}/api/sn_devops/devops/tool/softwarequality?toolId=${toolId}`;
 
     try {
         const token = `${username}:${password}`;
@@ -5215,7 +5220,11 @@ const axios = __nccwpck_require__(497);
         let httpHeaders = { headers: defaultHeaders };
         result = await axios.post(endpoint, JSON.stringify(payload), httpHeaders);
     } catch (e) {
-        core.setFailed(`ServiceNow DevOps Event to register Sonar Scan Summaries is not created. Please check ServiceNow logs for more details.`);
+        //core.setFailed('error message : '+e.message);
+        if (e.message.includes('ECONNREFUSED') || e.message.includes('405'))
+            core.setFailed('Your ServiceNow Instance URL is NOT valid. Please correct the URL and try again.');
+        else
+            core.setFailed(e.message);
     }
     
 })();

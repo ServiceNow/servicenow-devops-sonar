@@ -28,7 +28,7 @@ build:
     runs-on: ubuntu-latest
     steps:
       - name: ServiceNow DevOps Sonar Scan Results
-        uses: ServiceNow/servicenow-devops-sonar@v1
+        uses: ServiceNow/servicenow-devops-sonar@v1.34.2
         with:
           devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
           devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
@@ -65,7 +65,7 @@ The values for secrets should be setup in Step 1. Secrets should be created in S
 
 ### `job-name`
 
-**Required**  Display name of the job given for attribute _name_ in which _steps_ have been added for ServiceNow sonar custom action.
+**Required**  Display name of the job given for attribute _name_ in which _steps_ have been added for this custom action. For example, if display name of job is _Build_ then job-name value must be _'Build'_
 
 ### `sonar-host-url`
 

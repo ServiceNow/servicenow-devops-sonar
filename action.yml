@@ -1,4 +1,4 @@
-name: 'ServiceNow DevOps Sonar'
+name: 'ServiceNow DevOps Sonar Scan Results'
 description: 'Send Sonar Information to ServiceNow Devops'
 inputs:
   instance-url: 

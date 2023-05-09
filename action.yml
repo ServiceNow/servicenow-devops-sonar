@@ -8,7 +8,7 @@ inputs:
     description: 'Devops Integration User Name'
     required: false
   devops-integration-user-password:
-    description: 'Devops Integration User Password' 
+    description: 'Devops Integration User Password'
     required: false
   devops-integration-token:
     description: 'Devops Security Token'

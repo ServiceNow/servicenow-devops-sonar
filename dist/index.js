@@ -84,7 +84,7 @@ const axios = __nccwpck_require__(986);
     let payload;
     
     try {
-        sonarUrl = sonarUrl.trim();
+        sonarUrl = sonarUrl.trim(); 
         if (sonarUrl.endsWith('/'))
             sonarUrl = sonarUrl.slice(0, -1);
 

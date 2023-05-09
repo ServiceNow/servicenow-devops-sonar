@@ -24,7 +24,7 @@ const axios = require('axios');
     let payload;
     
     try {
-        sonarUrl = sonarUrl.trim();
+        sonarUrl = sonarUrl.trim(); 
         if (sonarUrl.endsWith('/'))
             sonarUrl = sonarUrl.slice(0, -1);
 

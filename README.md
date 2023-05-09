@@ -14,7 +14,7 @@ This custom action needs to be added at step level in a job to register sonar de
 On GitHub, go in your organization settings or repository settings, click on the _Secrets > Actions_ and create a new secret.
 
 Create secrets called 
-- `SN_DEVOPS_INTEGRATION_TOKEN` required for token based authentication
+- `SN_DEVOPS_INTEGRATION_TOKEN` required for token based authentication 
 - `SN_DEVOPS_USER` required for basic authentication at ServiceNow instance
 - `SN_DEVOPS_PASSWORD` required for basic authentication at ServiceNow instance
 - `SN_INSTANCE_URL` your ServiceNow instance URL, for example **https://test.service-now.com**

@@ -14,7 +14,7 @@ This custom action needs to be added at step level in a job to register sonar de
 On GitHub, go in your organization settings or repository settings, click on the _Secrets > Actions_ and create a new secret.
 
 Create secrets called 
-- `SN_DEVOPS_SECURITY_TOKEN` required for token based authentication
+- `SN_DEVOPS_INTEGRATION_TOKEN` required for token based authentication
 - `SN_DEVOPS_USER` required for basic authentication at ServiceNow instance
 - `SN_DEVOPS_PASSWORD` required for basic authentication at ServiceNow instance
 - `SN_INSTANCE_URL` your ServiceNow instance URL, for example **https://test.service-now.com**
@@ -25,22 +25,22 @@ Create secrets called
 ## Step 3: Configure the GitHub Action if need to adapt for your needs or workflows
 ## For Token based Authentication at ServiceNow instance
 ```yaml
-SonarAction:
-    name: Sonar Action
+build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: ServiceNow DevOps Sonar Scan Results
-        uses: ServiceNow/servicenow-devops-sonar@main
+        uses: ServiceNow/servicenow-devops-sonar@v1.39.0
         with:
           devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
           devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}
-          devops-security-token: ${{ secrets.SECRET_TOKENS3 }}
+          devops-integration-token: ${{ secrets.SN_DEVOPS_SECRET}}
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           context-github: ${{ toJSON(github) }}
-          job-name: 'Sonar Action'
-          sonar-host-url: 'https://sonarcloud.io'
-          sonar-project-key: '96f2cc0363e825eb416ff9f400ad416afc675fe3'
+          job-name: 'Build'
+          sonar-host-url: ${{ secrets.SONAR_URL }}
+          sonar-project-key: ${{ secrets.SONAR_PROJECT_KEY }}
 ```
 ## For Basic Authentication at ServiceNow instance
 ```yaml
@@ -72,7 +72,7 @@ The values for secrets should be setup in Step 1. Secrets should be created in S
 
 **Optional**  DevOps Integration User Password to ServiceNow instance for basic authentication. 
 
-### `devops-security-token`
+### `devops-integration-token`
 
 **Optional**  DevOps Security Token of GitHub tool created in ServiceNow instance for token based authentication. 
 

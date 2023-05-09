@@ -10,7 +10,7 @@ inputs:
   devops-integration-user-password:
     description: 'Devops Integration User Password'
     required: false
-  devops-security-token:
+  devops-integration-token:
     description: 'Devops Security Token'
     required: false
   tool-id:

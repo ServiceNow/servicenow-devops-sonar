@@ -8,7 +8,7 @@ const axios = require('axios');
     const toolId = core.getInput('tool-id', { required: true });
     const username = core.getInput('devops-integration-user-name', { required: false });
     const password = core.getInput('devops-integration-user-password', { required: false });
-    const secretToken = core.getInput('devops-security-token', { required: false });
+    const devopsIntegrationToken = core.getInput('devops-integration-token', { required: false });
     const jobname = core.getInput('job-name', { required: true });
     const projectKey = core.getInput('sonar-project-key', { required: true });
     let sonarUrl = core.getInput('sonar-host-url', { required: true });
@@ -59,14 +59,14 @@ const axios = require('axios');
     let httpHeaders;
 
     try {
-        if (!secretToken && !username && !password) {
+        if (!devopsIntegrationToken && !username && !password) {
             core.setFailed('Either secret token or integration username, password is needed for integration user authentication');
             return;
-        } else if (secretToken) {
+        } else if (devopsIntegrationToken) {
             const defaultHeadersv2 = {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': `${secretToken}`
+                'sn_devops_token': `${devopsIntegrationToken}`
             };
             httpHeaders = {
                 headers: defaultHeadersv2

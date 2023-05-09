@@ -2,8 +2,7 @@ const core = require('@actions/core');
 const axios = require('axios');
 
 
-(async function main() {
-    
+(async function main() {   
     let instanceUrl = core.getInput('instance-url', { required: true });
     const toolId = core.getInput('tool-id', { required: true });
     const username = core.getInput('devops-integration-user-name', { required: false });
@@ -24,7 +23,7 @@ const axios = require('axios');
     let payload;
     
     try {
-        sonarUrl = sonarUrl.trim(); 
+        sonarUrl = sonarUrl.trim();
         if (sonarUrl.endsWith('/'))
             sonarUrl = sonarUrl.slice(0, -1);
 
@@ -97,6 +96,7 @@ const axios = require('axios');
         } else {
             core.setFailed('ServiceNow Software Quality Results are NOT created. Please check ServiceNow logs for more details.');
         }
-    }  
+    }
+
 })();
 

@@ -66,7 +66,7 @@ The values for secrets should be setup in Step 1. Secrets should be created in S
 
 ### `devops-integration-user-name`
 
-**Optional**  DevOps Integration Username to ServiceNow instance for basic authentication.  
+**Optional**  DevOps Integration Username to ServiceNow instance for basic authentication.
 
 ### `devops-integration-user-password`
 

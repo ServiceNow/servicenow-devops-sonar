@@ -56,6 +56,7 @@ const axios = require('axios');
     const endpointv2 = `${instanceUrl}/api/sn_devops/v2/devops/tool/softwarequality?toolId=${toolId}`;
     let endpoint;
     let httpHeaders;
+    let snowResponse;
 
     try {
         if (!devopsIntegrationToken && !username && !password) {

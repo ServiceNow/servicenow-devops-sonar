@@ -141,7 +141,7 @@ const axios = __nccwpck_require__(986);
                 'Authorization': 'Basic ' + `${encodedToken}`
             };
             httpHeaders = {
-                headers: defaultHeadersv1
+                headers: defaultHeadersv1 
             };
             endpoint = endpointv1;
         } else {

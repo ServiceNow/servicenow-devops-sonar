@@ -81,7 +81,7 @@ const axios = require('axios');
                 'Authorization': 'Basic ' + `${encodedToken}`
             };
             httpHeaders = {
-                headers: defaultHeadersv1
+                headers: defaultHeadersv1 
             };
             endpoint = endpointv1;
         } else {

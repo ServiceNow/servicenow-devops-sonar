@@ -11,7 +11,7 @@ inputs:
     description: 'Devops Integration User Password'
     required: false
   devops-integration-token:
-    description: 'Devops Security Token'
+    description: 'Devops Security Token' 
     required: false
   tool-id:
     description: 'Orchestration Tool Id'

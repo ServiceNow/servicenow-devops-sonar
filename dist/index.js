@@ -62,7 +62,7 @@ const core = __nccwpck_require__(613);
 const axios = __nccwpck_require__(986);
 
 
-(async function main() {   
+(async function main() {
     let instanceUrl = core.getInput('instance-url', { required: true });
     const toolId = core.getInput('tool-id', { required: true });
     const username = core.getInput('devops-integration-user-name', { required: false });

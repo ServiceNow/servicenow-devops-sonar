@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const axios = require('axios');
 
 
-(async function main() {   
+(async function main() {
     let instanceUrl = core.getInput('instance-url', { required: true });
     const toolId = core.getInput('tool-id', { required: true });
     const username = core.getInput('devops-integration-user-name', { required: false });

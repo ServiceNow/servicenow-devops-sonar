@@ -23,7 +23,7 @@ Create secrets called
 - `SONAR_PROJECT_KEY` the project key in your Sonar instance, for example **org.examples:demo**
 
 ## Step 3: Configure the GitHub Action if need to adapt for your needs or workflows
-## For Token based Authentication at ServiceNow instance
+## For Token based Authentication at ServiceNow instance 
 ```yaml
 build:
     name: Build

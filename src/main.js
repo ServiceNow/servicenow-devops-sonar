@@ -66,7 +66,7 @@ const axios = require('axios');
             const defaultHeadersv2 = {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'sn_devops_token': `${devopsIntegrationToken}`
+                //'sn_devops_token': `${devopsIntegrationToken}`
             };
             httpHeaders = {
                 headers: defaultHeadersv2

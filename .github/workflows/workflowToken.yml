@@ -35,7 +35,7 @@ jobs:
         uses: ./ 
         id: update
         with:
-          devops-integration-token: ${{ secrets.SN_DEVOPS_SECRET }}
+          devops-integration-token: ${{ secrets.SN_DEVOPS_INTEGRATION_TOKEN }}
           instance-url: ${{ secrets.SN_INSTANCE_URL }}
           tool-id: ${{ secrets.SN_ORCHESTRATION_TOOL_ID }}
           context-github: ${{ toJSON(github) }}

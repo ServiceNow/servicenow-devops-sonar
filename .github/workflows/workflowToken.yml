@@ -32,7 +32,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: ServiceNow Devops Sonar
-        uses: ./ 
+        uses: ServiceNow/servicenow-devops-sonar@1.39.0
         id: update
         with:
           devops-integration-token: ${{ secrets.SN_DEVOPS_INTEGRATION_TOKEN }}

@@ -63,6 +63,7 @@ const axios = require('axios');
         result = await axios.post(endpoint, JSON.stringify(payload), httpHeaders);
     } catch (e) {
         core.setFailed(`ServiceNow DevOps Event to register Sonar Scan Summaries is not created. Please check ServiceNow logs for more details.`);
+        core.setFailed('[ServiceNow DevOps] Register Sonar Scan, Error message :'+e.message);
     }
     
 })();

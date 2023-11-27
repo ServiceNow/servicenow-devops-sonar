@@ -53,7 +53,7 @@ function circularSafeStringify(obj) {
             refName: `${githubContext.ref_name}`,
             refType: `${githubContext.ref_type}`
         };
-        core.debug('Sonar Custom Action payload is : ${JSON.stringify(payload)}\n\n');
+        core.debug(`Sonar Custom Action payload is : ${JSON.stringify(payload)}\n\n`);
     } catch (e) {
         core.setFailed(`Exception setting the payload ${e}`);
         return;
@@ -72,12 +72,14 @@ function circularSafeStringify(obj) {
         };
 
         let httpHeaders = { headers: defaultHeaders };
+        core.debug("[ServiceNow DevOps], Sending Request for Sonar, Request Header :"+JSON.stringify(httpHeaders)+", Payload :"+JSON.stringify(payload)+"\n");
         result = await axios.post(endpoint, JSON.stringify(payload), httpHeaders);
+        core.debug("[ServiceNow DevOps], Receiving response for Sonar, Response :"+result+"\n");
     } catch (e) {
-        core.debug('[ServiceNow DevOps] Register Sonar Scan Summaries, Error: '+JSON.stringify(e));
+        core.debug('[ServiceNow DevOps] Register Sonar Scan Summaries, Error: '+JSON.stringify(e)+"\n");
         if(e.response && e.response.data) {
             var responseObject=circularSafeStringify(e.response.data);
-            core.debug('[ServiceNow DevOps] Register Sonar Scan Summaries, Status code :'+e.response.statusCode+', Response data :'+responseObject);          
+            core.debug('[ServiceNow DevOps] Register Sonar Scan Summaries, Status code :'+e.response.status+', Response data :'+responseObject+"\n");          
         }
 
         if (e.message.includes('ECONNREFUSED') || e.message.includes('ENOTFOUND') || e.message.includes('405')) {

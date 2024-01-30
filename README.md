@@ -55,7 +55,7 @@ build:
     runs-on: ubuntu-latest
     steps:
       - name: ServiceNow DevOps Sonar Scan Results
-        uses: ServiceNow/servicenow-devops-sonar@v1.34.2
+        uses: ServiceNow/servicenow-devops-sonar@v3.1.0
         with:
           devops-integration-user-name: ${{ secrets.SN_DEVOPS_USER }}
           devops-integration-user-password: ${{ secrets.SN_DEVOPS_PASSWORD }}

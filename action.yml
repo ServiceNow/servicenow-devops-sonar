@@ -1,5 +1,5 @@
-name: 'ServiceNow DevOps Sonar Scan Results'
-description: 'Send Sonar Information to ServiceNow Devops'
+name: 'ServiceNow DevOps Sonar'
+description: 'Send Sonar Information to ServiceNow Instance'
 inputs:
   instance-url: 
     description: 'ServiceNow Instance URL'
@@ -28,9 +28,13 @@ inputs:
   sonar-project-key:
     description: 'Sonar Project Key'
     required: true
+  sonar-org-key:
+    description: 'Sonar Organization Key'
+    required: false
 branding:
   icon: 'refresh-ccw'
   color: 'green'
 runs: 
   using: 'node16'
   main: 'dist/index.js'
+  

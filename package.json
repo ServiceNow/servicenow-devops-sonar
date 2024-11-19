@@ -24,6 +24,7 @@
   "homepage": "https://github.com/ServiceNow/servicenow-devops-sonar#readme",
   "dependencies": {
     "@actions/core": "^1.8.2",
+    "@vercel/ncc": "^0.38.3",
     "axios": "^0.24.0",
     "follow-redirects": "^1.15.0"
   }

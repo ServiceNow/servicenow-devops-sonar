@@ -1,5 +1,18 @@
 const core = require('@actions/core');
 const axios = require('axios');
+const { HttpsProxyAgent } = require('https-proxy-agent');
+
+function createHttpClient() {
+    const proxyUrl = process.env.HTTPS_PROXY || process.env.https_proxy || process.env.HTTP_PROXY || process.env.http_proxy;
+    const config = {};
+    if (proxyUrl) {
+        config.httpsAgent = new HttpsProxyAgent(proxyUrl);
+        config.proxy = false;
+    }
+    return axios.create(config);
+}
+
+const httpClient = createHttpClient();
 
 function circularSafeStringify(obj) {
     const seen = new WeakSet();
@@ -95,7 +108,7 @@ function circularSafeStringify(obj) {
             return;
         }
         core.debug("[ServiceNow DevOps], Sending Request for Sonar, Request Header :"+JSON.stringify(httpHeaders)+", Payload :"+JSON.stringify(payload)+"\n");
-        snowResponse = await axios.post(endpoint, JSON.stringify(payload), httpHeaders);
+        snowResponse = await httpClient.post(endpoint, JSON.stringify(payload), httpHeaders);
         core.debug("[ServiceNow DevOps], Receiving response for Sonar, Response :"+circularSafeStringify(snowResponse)+"\n");
     } catch (e) {
         core.debug('[ServiceNow DevOps] Register Sonar Scan Summaries, Error: '+JSON.stringify(e)+"\n");
